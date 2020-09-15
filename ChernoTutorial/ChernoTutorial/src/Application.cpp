@@ -37,29 +37,26 @@ int main(void)
 */
 
     std::cout << "OpenGL Version " << glGetString(GL_VERSION) << std::endl;
-    
 
-    //for growing and shrinking effect
-    float angle = 0.0f;
-    float scale = 1;
+    //create and bind vertex buffer
+    unsigned int buffer;
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+
+    //vertex positions of triangle
+    float trianglePositions[6] = {-0.5f, -0.5f,
+                                   0.5f, -0.5f,
+                                   0.0f,  0.5f};
+
+    glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(float), trianglePositions, GL_STATIC_DRAW);
 
     //Loop until window is closed
     while (!glfwWindowShouldClose(window))
     {
-        /*angle += 0.0005f;
-        //makes the triangle grow and shrink
-        result = 1 + 0.5*sin(angle);*/
-
-        //Render
+        
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glBegin(GL_TRIANGLES);
-
-        glVertex2f(-0.5f * scale, -0.5f * scale);
-        glVertex2f(0.5f * scale, -0.5f * scale);
-        glVertex2f(0.0f, 0.5 * scale);
-
-        glEnd();
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         //Swap front and back buffers
         glfwSwapBuffers(window);
