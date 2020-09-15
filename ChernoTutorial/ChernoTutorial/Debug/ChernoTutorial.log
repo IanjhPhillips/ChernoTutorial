@@ -1,4 +1,3 @@
 ﻿  Application.cpp
-F:\OpenGL\ChernoTutorial\ChernoTutorial\ChernoTutorial\src\Application.cpp(34,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-F:\OpenGL\ChernoTutorial\ChernoTutorial\ChernoTutorial\src\Application.cpp(43,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+F:\OpenGL\ChernoTutorial\ChernoTutorial\ChernoTutorial\src\Application.cpp(59,30): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
   ChernoTutorial.vcxproj -> F:\OpenGL\ChernoTutorial\ChernoTutorial\Debug\ChernoTutorial.exe

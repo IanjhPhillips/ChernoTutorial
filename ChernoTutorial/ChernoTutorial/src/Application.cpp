@@ -1,5 +1,7 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <math.h>
+#include <iostream>
 
 int main(void)
 {
@@ -23,24 +25,39 @@ int main(void)
     //make window's context current
     glfwMakeContextCurrent(window);
 
+    if (glewInit() != GLEW_OK) {
+        std::cout << "Error with GLEW! Terminating..." << std::endl;
+        return -1;
+    }
+ /*                                                    ____                  _______     ______           __        __ _________  ____
+   ////////////////////////////////////////////////// / __ \___  ___ ___    / ___/ /    / __/ /____ _____/ /____   / // / __/ _ \/ __/ /////////////////////////////////////////////////
+  ////////////////////////////////////////////////// / /_/ / _ \/ -_) _ \  / (_// /__  _\ \/ __/ _ `/ __/ __(_-<  / _  / _// , _/ _/  /////////////////////////////////////////////////
+ //////////////////////////////////////////////////  \____/ .__/\__/_//_/  \___/____/ /___/\__/\_,_/_/  \__/___/ /_//_/___/_/|_/___/ /////////////////////////////////////////////////      
+////////////////////////////////////////////////// ----- /_/ ---------------------------------------------------------------------- /////////////////////////////////////////////////
+*/
+
+    std::cout << "OpenGL Version " << glGetString(GL_VERSION) << std::endl;
+    
+
+    //for growing and shrinking effect
     float angle = 0.0f;
-    float result;
+    float scale = 1;
 
     //Loop until window is closed
     while (!glfwWindowShouldClose(window))
     {
-        angle += 0.0005f;
-
-        result = 1 + 0.5*sin(angle);
+        /*angle += 0.0005f;
+        //makes the triangle grow and shrink
+        result = 1 + 0.5*sin(angle);*/
 
         //Render
         glClear(GL_COLOR_BUFFER_BIT);
 
         glBegin(GL_TRIANGLES);
 
-        glVertex2f(-0.5f*result, -0.5f*result);
-        glVertex2f(0.5f*result, -0.5f*result);
-        glVertex2f(0.0f, 0.5 * result);
+        glVertex2f(-0.5f * scale, -0.5f * scale);
+        glVertex2f(0.5f * scale, -0.5f * scale);
+        glVertex2f(0.0f, 0.5 * scale);
 
         glEnd();
 
@@ -54,51 +71,4 @@ int main(void)
     glfwTerminate();
     return 0;
 
-    //GLFWwindow* window;
-
-    ///* Initialize the library */
-    //if (!glfwInit())
-    //    return -1;
-
-    ///* Create a windowed mode window and its OpenGL context */
-    //window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    //if (!window)
-    //{
-    //    glfwTerminate();
-    //    return -1;
-    //}
-
-    ///* Make the window's context current */
-    //glfwMakeContextCurrent(window);
-
-    //float angle=0;
-    //float result;
-
-    ///* Loop until the user closes the window */
-    //while (!glfwWindowShouldClose(window))
-    //{
-    //    angle += 0.0005;
-    //    result = 1 + sin(angle);
-
-    //    /* Render here */
-    //    glClear(GL_COLOR_BUFFER_BIT);
-
-    //    glBegin(GL_TRIANGLES);
-
-    //    //glVertex2f(2.0f, 0.5f);
-    //    glVertex2f(-0.5*result, -0.5*result);
-    //    glVertex2f(0.5*result, -0.5*result);
-    //    glVertex2f(0.0*result, 0.5*result);
-    //    
-    //    glEnd();
-
-    //    /* Swap front and back buffers */
-    //    glfwSwapBuffers(window);
-
-    //    /* Poll for and process events */
-    //    glfwPollEvents();
-    //}
-
-    //glfwTerminate();
-    //return 0;
 }
