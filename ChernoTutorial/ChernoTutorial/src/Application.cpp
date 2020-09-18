@@ -3,6 +3,8 @@
 #include <math.h>
 #include <iostream>
 
+using namespace std;
+
 int main(void)
 {
     GLFWwindow* window;
@@ -18,6 +20,7 @@ int main(void)
     window = glfwCreateWindow(WIDTH, HEIGHT, "Cherno Tutorial Project", NULL, NULL);
     if (!window)
     {
+        cout << "Error with GLFW! Terminating..." << endl;
         glfwTerminate();
         return -1;
     }
@@ -26,7 +29,7 @@ int main(void)
     glfwMakeContextCurrent(window);
 
     if (glewInit() != GLEW_OK) {
-        std::cout << "Error with GLEW! Terminating..." << std::endl;
+        cout << "Error with GLEW! Terminating..." << endl;
         return -1;
     }
  /*                                                    ____                  _______     ______           __        __ _________  ____
@@ -36,7 +39,7 @@ int main(void)
 ////////////////////////////////////////////////// ----- /_/ ---------------------------------------------------------------------- /////////////////////////////////////////////////
 */
 
-    std::cout << "OpenGL Version " << glGetString(GL_VERSION) << std::endl;
+    cout << "OpenGL Version " << glGetString(GL_VERSION) << endl;
 
     //create and bind vertex buffer
     unsigned int buffer;
@@ -55,6 +58,14 @@ int main(void)
     {
         
         glClear(GL_COLOR_BUFFER_BIT);
+
+        glBegin(GL_TRIANGLES);
+
+        glVertex2f(-0.5f , -0.5f);
+        glVertex2f(0.5f, -0.5f);
+        glVertex2f(0.0f, 0.5);
+
+        glEnd();
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
